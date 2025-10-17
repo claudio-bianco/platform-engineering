@@ -32,6 +32,7 @@ jobs:
           echo "Branch: $GITHUB_REF"
           echo "Commit: $GITHUB_SHA"
           echo "Região AWS: $AWS_REGION"
+          echo "Região AWS: ${{ vars.AWS_REGION }}"
 
   deploy_stage:
     name: Deploy STAGE
@@ -46,6 +47,7 @@ jobs:
           echo "Branch: $GITHUB_REF"
           echo "Commit: $GITHUB_SHA"
           echo "Região AWS: $AWS_REGION"
+          echo "Região AWS: ${{ vars.AWS_REGION }}"
 
   deploy_prod:
     name: Deploy PROD
@@ -60,3 +62,4 @@ jobs:
           echo "Branch: $GITHUB_REF"
           echo "Commit: $GITHUB_SHA"
           echo "Região AWS: $AWS_REGION"
+          echo "Região AWS: ${{ vars.AWS_REGION }}"
