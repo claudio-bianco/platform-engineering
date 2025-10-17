@@ -23,21 +23,41 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        env: [ dev, stage, prod ]
-    environment: ${{ matrix.env }}        
-    steps:      
-      - uses: actions/checkout@v4
-      
-      - name: Run a one-line script
-        run: echo Hello, world!
-      
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          
+        include:
+          - branch: develop
+            env: dev
+            url: https://dev.example.com
+          - branch: stage
+            env: stage
+            url: https://stage.example.com
+          - branch: main
+            env: prod
+            url: https://example.com
+    if: ${{ github.ref_name == matrix.branch }}
+    environment:
+      name: ${{ matrix.env }}
+      url: ${{ matrix.url }}
+    steps:          
       - name: Exibir variáveis específicas
         run: |
           echo "Branch: $GITHUB_REF"
           echo "Commit: $GITHUB_SHA"
           echo "Região AWS: $AWS_REGION"
+          
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Exemplo genérico de build (ajuste conforme sua stack)
+      - name: Build
+        run: |
+          echo "Build da $APP_NAME na branch $GITHUB_REF_NAME"
+          # npm ci && npm run build
+          # mv build/ artifact/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ github.sha }}
+          path: |
+            artifact/**
+            !**/*.log
