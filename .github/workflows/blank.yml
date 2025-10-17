@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main, develop, stage]
   pull_request:
-    branches: [ "main" ]
+    branches: [main, develop, stage]
 
   workflow_dispatch:
     inputs:
@@ -19,45 +19,41 @@ env:
   AWS_REGION: ${{ inputs.region }}
 
 jobs:
-  build:    
+  deploy_dev:
+    name: Deploy DEV
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - branch: develop
-            env: dev
-            url: https://dev.example.com
-          - branch: stage
-            env: stage
-            url: https://stage.example.com
-          - branch: main
-            env: prod
-            url: https://example.com
-    if: ${{ github.ref_name == matrix.branch }}
-    environment:
-      name: ${{ matrix.env }}
-      url: ${{ matrix.url }}
-    steps:          
+    if: ${{ github.ref_name == 'develop' }}
+    steps:
+      - run: echo "Deploy para DEV (branch develop)"
+
       - name: Exibir variáveis específicas
         run: |
           echo "Branch: $GITHUB_REF"
           echo "Commit: $GITHUB_SHA"
           echo "Região AWS: $AWS_REGION"
-          
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      # Exemplo genérico de build (ajuste conforme sua stack)
-      - name: Build
+  deploy_stage:
+    name: Deploy STAGE
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'stage' }}
+    steps:
+      - run: echo "Deploy para STAGE (branch stage)"
+
+      - name: Exibir variáveis específicas
         run: |
-          echo "Build da $APP_NAME na branch $GITHUB_REF_NAME"
-          # npm ci && npm run build
-          # mv build/ artifact/
+          echo "Branch: $GITHUB_REF"
+          echo "Commit: $GITHUB_SHA"
+          echo "Região AWS: $AWS_REGION"
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ github.sha }}
-          path: |
-            artifact/**
-            !**/*.log
+  deploy_prod:
+    name: Deploy PROD
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'main' }}
+    steps:
+      - run: echo "Deploy para PROD (branch main)"
+
+      - name: Exibir variáveis específicas
+        run: |
+          echo "Branch: $GITHUB_REF"
+          echo "Commit: $GITHUB_SHA"
+          echo "Região AWS: $AWS_REGION"
