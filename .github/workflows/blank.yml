@@ -68,3 +68,10 @@ jobs:
           echo "Region var: ${{ vars.AWS_REGION }}"
           echo "API_KEY secrets: ${{ secrets.API_KEY }}"
           echo "URL: ${{ env.URL }}"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        run: |
+          chmod +x .github/scripts/custom.sh
+          .github/scripts/custom.sh
+          shell: bash
