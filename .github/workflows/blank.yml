@@ -69,6 +69,10 @@ jobs:
           echo "API_KEY secrets: ${{ secrets.API_KEY }}"
           echo "URL: ${{ env.URL }}"
 
+      - name: Dump de variáveis
+        shell: bash
+        run: printenv | sort
+
       - name: Checkout
         uses: actions/checkout@v4
 
