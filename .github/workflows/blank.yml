@@ -17,6 +17,7 @@ on:
 
 env:
   AWS_REGION: ${{ inputs.region }}
+  URL: "https://www.test.com"
 
 jobs:
   deploy_dev:
@@ -27,11 +28,14 @@ jobs:
     steps:
       - name: Exibir variáveis específicas
         run: |
+          echo "Repository: ${{ github.repository }}"
           echo "Branch: $GITHUB_REF"
           echo "Commit: $GITHUB_SHA"
           echo "Region env: $AWS_REGION"
           echo "Region var: ${{ vars.AWS_REGION }}"
           echo "API_KEY secrets: ${{ secrets.API_KEY }}"
+          echo "URL: ${{ env.URL }}"
+
 
   deploy_stage:
     name: Deploy STAGE
@@ -41,11 +45,13 @@ jobs:
     steps:
       - name: Exibir variáveis específicas
         run: |
+          echo "Repository: ${{ github.repository }}"
           echo "Branch: $GITHUB_REF"
           echo "Commit: $GITHUB_SHA"
           echo "Region env: $AWS_REGION"
           echo "Region var: ${{ vars.AWS_REGION }}"
           echo "API_KEY secrets: ${{ secrets.API_KEY }}"
+          echo "URL: ${{ env.URL }}"
 
   deploy_prod:
     name: Deploy PROD
@@ -55,8 +61,10 @@ jobs:
     steps:
       - name: Exibir variáveis específicas
         run: |
+          echo "Repository: ${{ github.repository }}"
           echo "Branch: $GITHUB_REF"
           echo "Commit: $GITHUB_SHA"
           echo "Region env: $AWS_REGION"
           echo "Region var: ${{ vars.AWS_REGION }}"
           echo "API_KEY secrets: ${{ secrets.API_KEY }}"
+          echo "URL: ${{ env.URL }}"
