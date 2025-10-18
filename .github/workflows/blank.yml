@@ -76,4 +76,3 @@ jobs:
         run: |
           chmod +x .github/scripts/custom.sh
           .github/scripts/custom.sh
-          shell: bash
