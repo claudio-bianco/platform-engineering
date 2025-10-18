@@ -25,8 +25,6 @@ jobs:
     if: ${{ github.ref_name == 'develop' }}
     environment: dev
     steps:
-      - run: echo "Deploy para DEV (branch develop)"
-
       - name: Exibir variáveis específicas
         run: |
           echo "Branch: $GITHUB_REF"
@@ -40,8 +38,6 @@ jobs:
     if: ${{ github.ref_name == 'stage' }}
     environment: stage
     steps:
-      - run: echo "Deploy para STAGE (branch stage)"
-
       - name: Exibir variáveis específicas
         run: |
           echo "Branch: $GITHUB_REF"
@@ -55,8 +51,6 @@ jobs:
     if: ${{ github.ref_name == 'main' }}
     environment: prod
     steps:
-      - run: echo "Deploy para PROD (branch main)"
-
       - name: Exibir variáveis específicas
         run: |
           echo "Branch: $GITHUB_REF"
