@@ -1,1 +1,1 @@
-# platform-engineering
+![Arquitetura AWS](docs/arquitetura.drawio.svg)
