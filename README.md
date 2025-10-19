@@ -1,1 +1,1 @@
-![Arquitetura AWS](docs/arquitetura.drawio.svg)
+![Arquitetura AWS](docs/fluxos-cicd.drawio.svg)
