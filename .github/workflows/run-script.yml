@@ -1,0 +1,40 @@
+name: Run Script (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      param1:
+        required: true
+        type: string
+      param2:
+        required: true
+        type: string
+      param3:
+        required: true
+        type: string
+      param4:
+        required: true
+        type: string
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repo platform-engineering
+        uses: actions/checkout@v4
+        with:
+          # força checkout do repo platform-engineering mesmo quando chamado de outro repo
+          repository: claudio-bianco/platform-engineering
+          ref: main
+
+      - name: Permissão para o script
+        run: chmod +x ./scripts/meu-script.sh
+
+      - name: Executar script com os 4 parâmetros
+        run: |
+          ./scripts/meu-script.sh \
+            "${{ inputs.param1 }}" \
+            "${{ inputs.param2 }}" \
+            "${{ inputs.param3 }}" \
+            "${{ inputs.param4 }}"
