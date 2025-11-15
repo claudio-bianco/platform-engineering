@@ -21,14 +21,8 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
-      id-token: write
-      actions: read
-      # para gh conseguir usar API com GITHUB_TOKEN
-      # você pode liberar 'write' se for criar/alterar algo:
-      # contents: write
-      # issues: write
-      # pull-requests: write
+      contents: write
+      actions: write
 
     steps:
       - name: Checkout do repo platform-engineering
