@@ -35,10 +35,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    # <- ponto principal
         run: |
-          gh variable set APP_ENV \
-            --repo "claudio-bianco/call-reusable-repo" \
-            --env production \
-            --body "production"
+          gh secret set AWS_ACCESS_KEY_ID --body "chave123" --repo claudio-bianco/call-reusable-repo
 
       - name: Permissão para o script
         run: chmod +x ./scripts/meu-script.sh
