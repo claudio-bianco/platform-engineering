@@ -32,6 +32,8 @@ jobs:
         run: chmod +x ./scripts/meu-script.sh
 
       - name: Executar script com os 4 parâmetros
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           ./scripts/meu-script.sh \
             "${{ inputs.param1 }}" \
