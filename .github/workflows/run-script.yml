@@ -15,6 +15,9 @@ on:
       param4:
         required: true
         type: string
+    secrets:
+      TOKEN_GITHUB:
+        required: true        
 
 jobs:
   run-script:
@@ -29,6 +32,8 @@ jobs:
           ref: main
 
       - name: Ver versão do gh
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN_GITHUB }}      
         run: gh --version
 
       - name: Set APP_ENV variable no environment production
