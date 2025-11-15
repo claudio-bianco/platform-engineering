@@ -31,12 +31,12 @@ jobs:
       - name: Ver versão do gh
         run: gh --version
 
-      - name: Criar variável em environment production
+      - name: Set APP_ENV variable no environment production
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+          GH_TOKEN: ${{ github.token }}    # <- ponto principal
         run: |
           gh variable set APP_ENV \
-            --repo "${{ github.repository }}" \
+            --repo "claudio-bianco/call-reusable-repo" \
             --env production \
             --body "production"
 
