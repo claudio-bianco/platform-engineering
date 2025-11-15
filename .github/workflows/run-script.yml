@@ -19,9 +19,6 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      actions: write
 
     steps:
       - name: Checkout do repo platform-engineering
