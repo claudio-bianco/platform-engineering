@@ -11,7 +11,7 @@ echo "Param4: $4"
 echo "Todos os parâmetros: $@"
 echo "Total: $#"
 
-gh secret set AWS_ACCESS_KEY_ID --body "chave123" --repo claudio-bianco/call-reusable-repo
+gh secret set MODELO --body "chave123" --repo claudio-bianco/call-reusable-repo
 
 echo "=== Script finalizado ==="
 
