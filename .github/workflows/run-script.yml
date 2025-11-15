@@ -33,7 +33,7 @@ jobs:
 
       - name: Set APP_ENV variable no environment production
         env:
-          GH_TOKEN: ${{ github.token }}    # <- ponto principal
+          GH_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: |
           gh secret set AWS_ACCESS_KEY_ID --body "chave123" --repo claudio-bianco/call-reusable-repo
 
@@ -42,7 +42,7 @@ jobs:
 
       - name: Executar script com os 4 parâmetros
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+          GH_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: |
           ./scripts/meu-script.sh \
             "${{ inputs.param1 }}" \
