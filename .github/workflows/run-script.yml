@@ -33,7 +33,7 @@ jobs:
 
       - name: Mostrar usuário autenticado
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: |
           gh auth status || gh auth login --with-token <<< "$GITHUB_TOKEN"
           gh api user
