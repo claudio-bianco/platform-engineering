@@ -31,12 +31,14 @@ jobs:
       - name: Ver versão do gh
         run: gh --version
 
-      - name: Mostrar usuário autenticado
+      - name: Criar variável em environment production
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         run: |
-          gh auth status
-          gh api user
+          gh variable set APP_ENV \
+            --repo "${{ github.repository }}" \
+            --env production \
+            --body "production"
 
       - name: Permissão para o script
         run: chmod +x ./scripts/meu-script.sh
