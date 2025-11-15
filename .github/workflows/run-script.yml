@@ -28,6 +28,16 @@ jobs:
           repository: claudio-bianco/platform-engineering
           ref: main
 
+      - name: Ver versão do gh
+        run: gh --version
+
+      - name: Mostrar usuário autenticado
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh auth status || gh auth login --with-token <<< "$GITHUB_TOKEN"
+          gh api user
+
       - name: Permissão para o script
         run: chmod +x ./scripts/meu-script.sh
 
